@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
-import TodoTextInput from '../TodoTextInput'
 
-class Header extends Component {
+class TodoTextInput extends Component {
 
   constructor(props) {
     super(props)
@@ -12,13 +11,10 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
-        <h1>todos</h1>
-        <TodoTextInput />
-      </header>
+      <input />
     )
   }
 
 };
 
-export default Header
+export default TodoTextInput
