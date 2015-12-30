@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
+import Main from '../Main'
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <Main />
         <Footer />
       </div>
     )
