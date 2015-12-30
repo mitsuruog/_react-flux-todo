@@ -1,11 +1,30 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react'
+import Header from '../Header'
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    // TODO TodoStoreにイベントリスナを登録する
+  }
+
+  componentWillUnmount() {
+    // TODO TodoStoreからイベントリスナを削除する
+  }
+
   render() {
     return (
-      <div>Hello React</div>
+      <div>
+        <Header />        
+      </div>
     )
+  }
+
+  _onChange() {
+
   }
 
 };
