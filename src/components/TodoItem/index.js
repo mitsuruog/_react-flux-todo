@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
-import TodoItem from '../TodoItem'
 
-class Main extends Component {
+class TodoItem extends Component {
 
   constructor(props) {
     super(props)
@@ -12,14 +11,12 @@ class Main extends Component {
 
   render() {
     return (
-      <section id="main">
-        <ul>
-          <TodoItem />
-        </ul>
-      </section>
+      <li>
+        TodoItem
+      </li>
     )
   }
 
 };
 
-export default Main
+export default TodoItem
