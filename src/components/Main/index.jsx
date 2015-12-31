@@ -9,11 +9,14 @@ class Main extends Component {
 
   render() {
 
+    const todos = this.props.todos.map((todo, index) => {
+      return <TodoItem key={index} todo={todo} />
+    })
 
     return (
       <section id="main">
         <ul>
-          <TodoItem />
+          {todos}
         </ul>
       </section>
     )

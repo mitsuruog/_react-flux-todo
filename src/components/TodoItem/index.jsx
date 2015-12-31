@@ -6,17 +6,18 @@ class TodoItem extends Component {
     super(props)
   }
 
-  componentDidMount() {}
-  componentWillUnmount() {}
-
   render() {
     return (
       <li>
-        TodoItem
+        {this.props.todo.text}
       </li>
     )
   }
 
 };
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired,
+}
 
 export default TodoItem
