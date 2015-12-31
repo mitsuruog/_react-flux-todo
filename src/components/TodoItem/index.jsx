@@ -24,6 +24,10 @@ class TodoItem extends Component {
     TodoActions.toggleComplete(this.props.todo)
   }
 
+  handleDestroy(e) {
+    TodoActions.destroy(this.props.todo.id)
+  }
+
   render() {
 
     const todo = this.props.todo
@@ -43,6 +47,7 @@ class TodoItem extends Component {
           checked={todo.complete}
           onChange={::this.handleToggleComplete} />
         {this.props.todo.text}
+        <button onClick={::this.handleDestroy}>x</button>
         {inputField}
       </li>
     )

@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/Dispatcher'
-import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE } from '../constants/TodoConstants'
+import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE, DESTROY } from '../constants/TodoConstants'
 
 class TodoActions {
 
@@ -23,6 +23,13 @@ class TodoActions {
     Dispatcher.dispatch({
       actionType: actionType,
       id: todo.id
+    })
+  }
+
+  destroy(id) {
+    Dispatcher.dispatch({
+      actionType: DESTROY,
+      id: id
     })
   }
 

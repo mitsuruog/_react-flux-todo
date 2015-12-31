@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/Dispatcher'
-import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE } from '../constants/TodoConstants'
+import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE, DESTROY } from '../constants/TodoConstants'
 
 const EventEmitter = require('events').EventEmitter;
 const CHANGE_EVENT = 'change';
@@ -46,6 +46,10 @@ class TodoStore extends EventEmitter {
     })
   }
 
+  destroy(id) {
+    this.todos = this.todos.filter((todo) => todo.id !== id)
+  }
+
 }
 
 let todoStore = new TodoStore();
@@ -84,6 +88,10 @@ Dispatcher.register((action) => {
       })
       todoStore.emitChange()
       break;
+    case DESTROY:
+        todoStore.destroy(action.id)
+        todoStore.emitChange()
+        break;
     default:
 
   }
