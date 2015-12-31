@@ -7,10 +7,9 @@ class Main extends Component {
     super(props)
   }
 
-  componentDidMount() {}
-  componentWillUnmount() {}
-
   render() {
+
+
     return (
       <section id="main">
         <ul>
@@ -21,5 +20,9 @@ class Main extends Component {
   }
 
 };
+
+Main.propTypes = {
+  todos: PropTypes.array.isRequired,
+}
 
 export default Main
