@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/Dispatcher'
-import { CREATE, UPDATE } from '../constants/TodoConstants'
+import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE } from '../constants/TodoConstants'
 
 const EventEmitter = require('events').EventEmitter;
 const CHANGE_EVENT = 'change';
@@ -55,20 +55,35 @@ Dispatcher.register((action) => {
   // TODO デバック用。あとでけす
   console.log(action.actionType);
 
-  const text = action.text.trim()
+  let text
 
   switch (action.actionType) {
     case CREATE:
+      text = action.text.trim()
       if (text) {
         todoStore.create(text)
         todoStore.emitChange()
       }
       break;
     case UPDATE:
+      text = action.text.trim()
       todoStore.update(action.id, {
         text: text,
       })
       todoStore.emitChange()
+      break;
+    case COMPLETE:
+      todoStore.update(action.id, {
+        complete: true,
+      })
+      todoStore.emitChange()
+      break;
+    case UNDO_COMPLETE:
+      todoStore.update(action.id, {
+        complete: false,
+      })
+      todoStore.emitChange()
+      break;
     default:
 
   }

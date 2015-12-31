@@ -20,6 +20,10 @@ class TodoItem extends Component {
     this.setState({isEditing: false})
   }
 
+  handleToggleComplete(e) {
+    TodoActions.toggleComplete(this.props.todo)
+  }
+
   render() {
 
     const todo = this.props.todo
@@ -34,6 +38,10 @@ class TodoItem extends Component {
 
     return (
       <li onDoubleClick={::this.handleDoubleClick}>
+        <input
+          type="checkbox"
+          checked={todo.complete}
+          onChange={::this.handleToggleComplete} />
         {this.props.todo.text}
         {inputField}
       </li>

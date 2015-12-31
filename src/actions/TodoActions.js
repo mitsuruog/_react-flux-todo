@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/Dispatcher'
-import { CREATE, UPDATE } from '../constants/TodoConstants'
+import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE } from '../constants/TodoConstants'
 
 class TodoActions {
 
@@ -15,6 +15,14 @@ class TodoActions {
       actionType: UPDATE,
       id: id,
       text: text,
+    })
+  }
+
+  toggleComplete(todo) {
+    const actionType = todo.complete ? UNDO_COMPLETE: COMPLETE
+    Dispatcher.dispatch({
+      actionType: actionType,
+      id: todo.id
     })
   }
 
