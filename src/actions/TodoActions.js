@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/Dispatcher'
-import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE, DESTROY, DESTROY_COMPLETED } from '../constants/TodoConstants'
+import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE, ALL_COMPLETE, ALL_UNDO_COMPLETE, DESTROY, DESTROY_COMPLETED } from '../constants/TodoConstants'
 
 class TodoActions {
 
@@ -23,6 +23,13 @@ class TodoActions {
     Dispatcher.dispatch({
       actionType: actionType,
       id: todo.id
+    })
+  }
+
+  toggleAll(complate) {
+    const actionType = complate ? ALL_COMPLETE: ALL_UNDO_COMPLETE
+    Dispatcher.dispatch({
+      actionType: actionType,
     })
   }
 

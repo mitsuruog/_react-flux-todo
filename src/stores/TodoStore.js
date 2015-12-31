@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/Dispatcher'
-import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE, DESTROY, DESTROY_COMPLETED } from '../constants/TodoConstants'
+import { CREATE, UPDATE, COMPLETE, UNDO_COMPLETE, ALL_COMPLETE, ALL_UNDO_COMPLETE, DESTROY, DESTROY_COMPLETED } from '../constants/TodoConstants'
 
 const EventEmitter = require('events').EventEmitter;
 const CHANGE_EVENT = 'change';
@@ -44,6 +44,10 @@ class TodoStore extends EventEmitter {
       }
       return todo
     })
+  }
+
+  updateAll(updated) {
+    this.todos = this.todos.map((todo) => assign({}, todo, updated))
   }
 
   destroy(id) {
@@ -93,13 +97,25 @@ Dispatcher.register((action) => {
       todoStore.emitChange()
       break;
     case DESTROY:
-        todoStore.destroy(action.id)
-        todoStore.emitChange()
-        break;
+      todoStore.destroy(action.id)
+      todoStore.emitChange()
+      break;
     case DESTROY_COMPLETED:
-        todoStore.destroyCompleted()
-        todoStore.emitChange()
-        break;
+      todoStore.destroyCompleted()
+      todoStore.emitChange()
+      break;
+    case ALL_COMPLETE:
+      todoStore.updateAll({
+        complete: true,
+      })
+      todoStore.emitChange()
+      break;
+    case ALL_UNDO_COMPLETE:
+      todoStore.updateAll({
+        complete: false,
+      })
+      todoStore.emitChange()
+      break;
     default:
 
   }
