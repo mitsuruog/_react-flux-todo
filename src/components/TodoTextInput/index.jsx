@@ -5,33 +5,28 @@ class TodoTextInput extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      text: this.props.text || '',
+      text: this.props.text || ''
     }
   }
 
   handleChange(e) {
-    this.setState({
-      text: e.target.value,
-    })
+    this.setState({text: e.target.value})
   }
 
   handleSubmit(e) {
     const text = e.target.value.trim()
-    if(e.which === 13) {
+    if (e.which === 13) {
       this.props.onSave(text)
-      this.setState({
-        text: ''
-      })
+      this.setState({text: ''})
     }
   }
 
   render() {
-    return (
-      <input
-        value={this.state.text}
-        onChange={::this.handleChange}
-        onKeyDown={::this.handleSubmit} />
-    )
+    return (<input
+      id={this.props.id}
+      value={this.state.text}
+      onChange={:: this.handleChange}
+      onKeyDown={:: this.handleSubmit} />)
   }
 
 };
@@ -39,6 +34,7 @@ class TodoTextInput extends Component {
 TodoTextInput.propTypes = {
   onSave: PropTypes.func.isRequired,
   value: PropTypes.string,
+  id: PropTypes.string
 };
 
 export default TodoTextInput

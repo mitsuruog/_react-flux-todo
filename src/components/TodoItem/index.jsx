@@ -1,15 +1,41 @@
 import React, {Component, PropTypes} from 'react'
+import TodoActions from '../../actions/TodoActions'
+import TodoTextInput from '../TodoTextInput'
 
 class TodoItem extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      isEditing: false
+    }
+  }
+
+  handleDoubleClick(e) {
+    this.setState({isEditing: true})
+  }
+
+  handleSave(text) {
+    TodoActions.update(this.props.todo.id, text)
+    this.setState({isEditing: false})
   }
 
   render() {
+
+    const todo = this.props.todo
+    let inputField
+
+    if (this.state.isEditing) {
+      inputField = <TodoTextInput
+        onSave={::this.handleSave}
+        id={todo.id}
+        text={todo.text} />
+    }
+
     return (
-      <li>
+      <li onDoubleClick={::this.handleDoubleClick}>
         {this.props.todo.text}
+        {inputField}
       </li>
     )
   }
@@ -17,7 +43,7 @@ class TodoItem extends Component {
 };
 
 TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
+  todo: PropTypes.object.isRequired
 }
 
 export default TodoItem
