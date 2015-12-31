@@ -9,8 +9,8 @@ class Main extends Component {
 
   render() {
 
-    const todos = this.props.todos.map((todo, index) => {
-      return <TodoItem key={index} todo={todo} />
+    const todos = this.props.todos.map((todo) => {
+      return <TodoItem key={todo.id} todo={todo} />
     })
 
     return (

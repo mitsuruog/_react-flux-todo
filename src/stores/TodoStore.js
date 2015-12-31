@@ -3,6 +3,7 @@ import {CREATE} from '../constants/TodoConstants'
 
 const EventEmitter = require('events').EventEmitter;
 const CHANGE_EVENT = 'change';
+const shortid = require('shortid');
 
 class TodoStore extends EventEmitter {
 
@@ -29,6 +30,7 @@ class TodoStore extends EventEmitter {
 
   create(text) {
     this.todos.push({
+      id: shortid.generate(),
       complete: false,
       text: text,
     })
