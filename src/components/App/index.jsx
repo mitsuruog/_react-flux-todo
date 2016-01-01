@@ -21,7 +21,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Header />
         <Main
           todos={this.state.allTodos} />

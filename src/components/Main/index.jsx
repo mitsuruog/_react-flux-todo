@@ -26,16 +26,21 @@ class Main extends Component {
     let toggleAll
     if (todos.length) {
       toggleAll =
-        <li>
-          <input type="checkbox"
-            checked={this.state.isAllCompleted}
-            onClick={::this.handleToggleAll} />
+        <li className="list-group-item list-group-item-info">
+          <div className="checkbox">
+            <label>
+              <input type="checkbox"
+                checked={this.state.isAllCompleted}
+                onClick={::this.handleToggleAll} />
+              Toggle all todos state
+            </label>            
+          </div>
         </li>
     }
 
     return (
       <section id="main">
-        <ul>
+        <ul className="list-group">
           {toggleAll}
           {todos}
         </ul>

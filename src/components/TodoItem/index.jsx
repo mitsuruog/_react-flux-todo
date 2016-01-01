@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import TodoActions from '../../actions/TodoActions'
 import TodoTextInput from '../TodoTextInput'
 
+const classNames = require('classnames');
+
 class TodoItem extends Component {
 
   constructor(props) {
@@ -31,24 +33,42 @@ class TodoItem extends Component {
   render() {
 
     const todo = this.props.todo
-    let inputField
 
+    const textClass = classNames({
+      completed: todo.complete
+    })
+
+    let text = <span className={textClass}>{todo.text}</span>
     if (this.state.isEditing) {
-      inputField = <TodoTextInput
+      text = <TodoTextInput
         onSave={::this.handleSave}
         id={todo.id}
         text={todo.text} />
     }
 
     return (
-      <li onDoubleClick={::this.handleDoubleClick}>
-        <input
-          type="checkbox"
-          checked={todo.complete}
-          onChange={::this.handleToggleComplete} />
-        {this.props.todo.text}
-        <button onClick={::this.handleDestroy}>x</button>
-        {inputField}
+      <li
+        className="list-group-item"
+        onDoubleClick={::this.handleDoubleClick}>
+        <div className="row">
+          <div className="col-xs-2 col-sm-1">
+            <input
+              type="checkbox"
+              checked={todo.complete}
+              onChange={::this.handleToggleComplete} />
+          </div>
+          <div className="col-xs-8 col-sm-10">
+            {text}
+          </div>
+          <div className="col-xs-2 col-sm-1">
+            <button
+              type="button"
+              className="btn btn-danger btn-sm"
+              onClick={::this.handleDestroy}>
+              <span className="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
       </li>
     )
   }

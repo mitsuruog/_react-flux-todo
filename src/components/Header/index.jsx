@@ -16,11 +16,19 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
-        <h1>todos</h1>
-        <TodoTextInput
-          onSave={::this.handleSave} />
-      </header>
+      <nav className="navbar navbar-inverse navbar-fixed-top">
+        <div className="container">
+          <div className="navbar-header">
+            <a className="navbar-brand" href="#">Todos</a>
+          </div>
+          <form className="navbar-form navbar-left">
+            <div className="form-group">
+              <TodoTextInput
+                onSave={::this.handleSave} />
+            </div>
+          </form>
+        </div>
+      </nav>
     )
   }
 

@@ -19,14 +19,23 @@ class Footer extends Component {
     if(completedCount >= 1) {
       clearCompletedButton =
         <button
+          className="btn btn-info navbar-btn"
           onClick={::this.handleClearCompleted}>Clear completed ({completedCount})</button>
     }
 
     return (
-      <footer>
-        footer {this.props.todos.length}
-        {clearCompletedButton}
-      </footer>
+      <nav className="navbar navbar-default navbar-fixed-bottom">
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-6 text-left">
+              <span className="navbar-text">
+                Total todos are {this.props.todos.length}
+              </span>
+            </div>
+            <div className="col-xs-6 text-right">{clearCompletedButton}</div>
+          </div>
+        </div>
+      </nav>
     )
   }
 

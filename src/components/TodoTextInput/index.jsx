@@ -16,6 +16,7 @@ class TodoTextInput extends Component {
   handleSubmit(e) {
     const text = e.target.value.trim()
     if (e.which === 13) {
+      e.preventDefault()
       this.props.onSave(text)
       this.setState({text: ''})
     }
@@ -23,10 +24,13 @@ class TodoTextInput extends Component {
 
   render() {
     return (<input
+      type="text"
+      className="form-control"
+      placeholder="What needs to be done?"
       id={this.props.id}
       value={this.state.text}
-      onChange={:: this.handleChange}
-      onKeyDown={:: this.handleSubmit} />)
+      onChange={::this.handleChange}
+      onKeyDown={::this.handleSubmit} />)
   }
 
 };
