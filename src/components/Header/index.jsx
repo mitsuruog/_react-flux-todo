@@ -6,9 +6,6 @@ class Header extends Component {
 
   constructor(props) {
     super(props)
-    this.state ={
-      isAllCompleted: false,
-    }
   }
 
   handleSave(text) {
@@ -17,22 +14,10 @@ class Header extends Component {
     }
   }
 
-  handleToggleAll(e) {
-    const newState = !this.state.isAllCompleted
-    TodoActions.toggleAll(newState)
-    this.setState({
-      isAllCompleted: newState,
-    })
-  }
-
   render() {
     return (
       <header>
         <h1>todos</h1>
-        <input
-            type="checkbox"
-            checked={this.state.isAllCompleted}
-            onClick={::this.handleToggleAll} />
         <TodoTextInput
           onSave={::this.handleSave} />
       </header>
