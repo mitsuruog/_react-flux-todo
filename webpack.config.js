@@ -12,7 +12,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.html$/, loader: "file?name=[name].[ext]" },
-//      { test: /\.css$/, loader: "style-loader!css-loader?modules&importLoaders=1!postcss-loader" },
+      { test: /\.css$/, loaders: ["style", "css"] },
       { test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ["react-hot","babel-loader"]},
     ],
   },
